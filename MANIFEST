@@ -1,0 +1,9 @@
+Changes
+DK.pm
+MANIFEST
+Makefile.PL
+README
+bin/README
+bin/mkpostalinfo
+t/1_procedures.t
+t/2_objects.t
