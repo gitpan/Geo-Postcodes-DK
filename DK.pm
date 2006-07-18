@@ -1,13 +1,26 @@
 package Geo::Postcodes::DK;
 
-use Geo::Postcodes; ## qw(borough_of county_of);
-
+use Geo::Postcodes 0.02; ## qw(borough_of county_of);
 use base qw(Geo::Postcodes);
 
-my @ISA = ('Geo::Postcodes', 'Exporter');
+# my @ISA = ('Geo::Postcodes', 'Exporter');
 
 use strict;
 use warnings;
+
+## Which methods are available ##################################################
+
+my @valid_methods = qw(postcode location address owner type selection);
+  # Used by the 'methods' method.
+
+my %valid_methods;
+
+foreach (@valid_methods)
+{
+  $valid_methods{$_} = 1;
+}
+
+## Exporter #####################################################################
 
 require Exporter;
 
@@ -19,9 +32,7 @@ my @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 my @EXPORT = qw( );
 
-our $VERSION = '0.01';
-
-# Preloaded methods go here.
+our $VERSION = '0.02';
 
 ## Private Variables ############################################################
 
@@ -61,13 +72,27 @@ sub DESTROY {
   delete $Geo::Postcodes::address_of   {$dead_body};
 }
 
+sub methods
+{
+  return @valid_methods;
+}
+
+sub is_method
+{
+  my $method = shift;
+  $method    = shift if $method =~ /Geo::Postcodes/; # Called on an object.
+
+  return 1 if $valid_methods{$method};
+  return 0;
+}
+
 ## Global Procedures ############################################################
 
 sub legal # Is it a legal code, i.e. something that follows the syntax rule.
 {
   my $postcode = shift;
   return 0 unless defined $postcode;
-  return 0 unless $postcode =~ /^\d\d\d\d$/ or $postcode =~ /^\d\d\d$/;
+  return 0 unless $postcode =~ /^\d{3,4}$/;
   return 1;
 }
 
@@ -78,6 +103,12 @@ sub valid # Is the code in actual use.
 
   return 1 if exists $location{$postcode};
   return 0;
+}
+
+sub postcode_of # So that 'selection' does not choke.
+{
+  my $postcode = shift;
+  return $postcode;
 }
 
 sub location_of
@@ -95,15 +126,19 @@ sub type_of
   return unless defined $postcode;
   return unless exists $type{$postcode};
 
+  my $kategorikode = $type{$postcode} || "xx";
+
+  # return $kategorikode;
+
   my %kat; $kat{"B"} = "Postboks";
            $kat{"P"} = "Personlig eier";
            $kat{"U"} = "Ufrankerede svarforsendelser";
            $kat{"G"} = "Gateadresse";
+           $kat{"xx"} = "unknown";
 
-  my $kategorikode = $type{$postcode};
 
   return $kat{$kategorikode} if exists $kat{$kategorikode};
-  return;
+  return ;
 }
 
 sub address_of
@@ -124,8 +159,21 @@ sub owner_of
   return;
 }
 
-## bin/mkpostalinfo begin
-## This file was auto generated on Mon Jul 10 11:16:48 2006. Do NOT edit it!
+sub get_postcodes
+{
+  return keys %location;
+}
+
+## Returns a list of postcodes if called as a procedure; Geo::Postcodes::NO::selection(xx => 'yy')
+## Returns a list of objects if called as a method;      Geo::Postcodes::NO->selection(xx => 'yy')
+
+sub selection
+{
+  return Geo::Postcodes::_selection("Geo::Postcodes::DK", \%valid_methods, @_);
+}
+
+## bin/update begin
+## This data structure was auto generated on Mon Jul 17 20:43:49 2006. Do NOT edit it!
 
 $location{'0555'} = "Scanning"; $owner{'0555'} = "Data Scanning A/S, 'Læs Ind'-service";
 $location{'0555'} = "Scanning"; $owner{'0555'} = "Data Scanning A/S, 'Læs Ind'-service";
@@ -1542,41 +1590,42 @@ $location{'950'} = "Porkeri";
 $location{'960'} = "Hov";
 $location{'970'} = "Sumba";
 
-
-## bin/mkpostalinfo end
+## bin/update end
 
 1;
 __END__
 
 =head1 NAME
 
-Geo::Postcodes::DK - Danish postal codes with names
+Geo::Postcodes::DK - Danish postcodes with associated information
 
 =head1 SYNOPSIS
 
 This module can be used object oriented, or as procedures.
 Take your pick.
 
-=head2 OBJECT ORIENTED
+=head2 OBJECTS
 
 use Geo::Postcodes::DK qw(valid);
 
-my $pnr = '1171';
+my $postcode = '1171';
 
-if (valid($pnr)) # A valid postal code?
+if (valid($postcode)) # A valid postcode?
 {
-  my $P = Geo::Postcodes::DK-E<gt>new($pnr);
+  my $P = Geo::Postcodes::DK->new($postcode);
 
-  print "Postcode"        '" . $P->$pnr        . "'.\n";
-  print "Postal location: '" . $P->location_of . "'.\n";
-  print "Postcode type:   '" . $P->type        . "'.\n"; 
-  print "Owner:           '" . $P->owner       . "'.\n";
-  print "Address:         '" . $P->address     . "'.\n";
+  printf "Postcode         '%s'.\n", $P->postcode();
+  printf "Postal location: '%s'.\n", $P->location();
+  printf "Borough:         '%s'.\n", $P->borough();
+  printf "County:          '%s'.\n", $P->county();
+  printf "Postcode type:   '%s'.\n", $P->type(); 
+  printf "Owner:           '%s'.\n", $P->owner();
+  printf "Address:         '%s'.\n", $P->address();
 }
 
-The test for a valid postal code can also be expressed this way:
+The test for a valid postcode can also be expressed this way:
 
-my $P = Geo::postcodes::DK-E<gt>new($pnr);
+my $P = Geo::postcodes::DK->new($postcode);
 
 if ($P) { ... }
 
@@ -1584,27 +1633,27 @@ if ($P) { ... }
 
 use Geo::postcodes::DK ':all';
 
-my $pnr = "1171";
+my $postcode = "1171";
 
-if (valid($pnr))
+if (valid($postcode))
 {
-  print "Postcode"        '" . $postcode              . "'.\n";
-  print "Postal location: '" . location_of($postcode) . "'.\n";
-  print "Postcode type:   '" . type_of($postcode)     . "'.\n"; 
-  print "Owner:           '" . owner_of($postcode)    . "'.\n";
-  print "Address:         '" . address_of($postcode)  . "'.\n";
+  printf "Postcode"        '%s'.\n", $postcode;
+  printf "Postal location: '%s'.\n", location_of($postcode);
+  printf "Postcode type:   '%s'.\n", type_of($postcode); 
+  printf "Owner:           '%s'.\n", owner_of($postcode);
+  printf "Address:         '%s'.\n", address_of($postcode);
 }
 
 =head1 ABSTRACT
 
 Geo::postcodes::DK - Perl extension for the mapping between danish
-(including Grønland and Færøerne) postal codes, postal location,
+(including Grønland and Færøerne) postcodes, postal location,
 address and address owner.
 
 =head1 DESCRIPTION
 
 Tired og entering the postal name all the time? This is not necessary, as
-it is uniquely defined from the postal code. Request the postal code only,
+it is uniquely defined from the postcode. Request the postcode only,
 and use this library to get the postal name.
 
 =head2 EXPORT
@@ -1616,7 +1665,31 @@ B<use Geo::postcodes::DK ':all';>.
 
 =head1 DEPENDENCIES
 
-This module is a subclass of Geo::Postcodes, which must be installed separately.
+This module is a subclass of Geo::Postcodes, which must be installed first.
+
+=head1 PROCEDURES and METHODS
+
+These functions can be used as methods or procedures.
+
+=head2 is_method
+
+C<my $boolean = Geo::postcodes::DK::is_method($method);>
+
+C<my $boolean = $object-E<gt>is_method($method);>
+
+Does the specified method exist.
+
+=head2 methods
+
+C<my @methods = Geo::postcodes::DK::methods();>
+
+C<my @methods = $object-E<gt>methods();>
+
+A list of legal methods.
+
+=head2 selection
+
+See the I<Geo::Postcodes> manual. 
 
 =head1 PROCEDURES
 
@@ -1625,41 +1698,41 @@ argument.
 
 =head2 legal
 
-C<my $boolean = Geo::postcodes::DK::legal($number);>
+C<my $boolean = Geo::postcodes::DK::legal($postcode);>
 
-Do we have a legal postal code; a code that follows the syntax rules?
+Do we have a legal postcode; a code that follows the syntax rules?
 
 =head2 valid
 
-C<my $boolean = Geo::postcodes::DK::valid($number);>
+C<my $boolean = Geo::postcodes::DK::valid($postcode);>
 
-Do we have a valid postal code; a code in actual use?
+Do we have a valid postcode; a code in actual use?
 
 =head2 location_of
 
-C<my $location = Geo::postcodes::DK::location_of($number);>
+C<my $location = Geo::postcodes::DK::location_of($postcode);>
 
-The postal place associated with the specified postal code.
+The postal place associated with the specified postcode.
 
 =head2 owner_of
 
-C<my $owner = Geo::postcodes::DK::owner_of($number);>
+C<my $owner = Geo::postcodes::DK::owner_of($postcode);>
 
-The owner (company) of the postal code, if any.
+The owner (company) of the postcode, if any.
 
 =head2 address_of
 
-C<my $address = Geo::postcodes::DK::address_of($number);>
+C<my $address = Geo::postcodes::DK::address_of($postcode);>
 
-The address (street) associated with the specified postal code.
+The address (street) associated with the specified postcode.
 
 =head2 type_of
 
-C<my $type = Geo::postcodes::DK::type_of($number);>
+C<my $type = Geo::postcodes::DK::type_of($postcode);>
 
-What kind of postal code is this. Possible values are: I<"Postboks">,
-I<"Personlig eier">, I<"Ufrankerede svarforsendelser">, and
-I<"Gateadresse">.
+What kind of postcode is this. The values, as given by the danish
+postal service, are: I<"Postboks">, I<"Personlig eier">,
+I<"Ufrankerede svarforsendelser">, and I<"Gateadresse">.
 
 This information may not be especially useful.
 
@@ -1667,37 +1740,35 @@ This information may not be especially useful.
 
 =head2 new
 
-C<my $P = Geo::postcodes::DK-E<gt>new($number);>
+C<my $P = Geo::postcodes::DK-E<gt>new($postcode);>
 
-Create a new postal code object. 
+Create a new postcode object. 
 
-The constructor will return I<undef> when passed an illegal postal code.
-Legal postal codes consist of four digits, and must also be in use.
+The constructor will return I<undef> when passed an invalid or illegal postcode.
+See the description of the I<legal> and I<valid> procedures above.
 
-Either check the postal code with C<legal> before this call,
+Either check the postcode with C<legal> before this call,
 or test it afterwards; C<if ($P) { ... }>.
 
 =head2 postcode
 
-C<my $postcode = $P-E<gt>postcode;>
+C<my $postcode = $P-E<gt>postcode();>
 
 The postcode.
 
 =head2 location
 
-C<my $location = $P-E<gt>location;>
+C<my $location = $P-E<gt>location();>
 
 The postal location associated with the specified postcode.
 
 =head2 type
 
-C<my $type = $P-E<gt>type;>
+C<my $type = $P-E<gt>type();>
 
 See the description of the procedure I<type_of> above.
 
 =head1 CAVEAT
-
-This module uses "inside out objects".
 
 =head2 POSTCODES
 
@@ -1706,10 +1777,10 @@ while Færøerne uses three digits numbers ("000" to "999"). This means that
 "0010" and "010" are legal, while "10" is not.
 
 Use I<legal> to check for legal postcodes, and I<valid> to check if
-the postcode is actually in use. C<Geo::postcodes::NO->new($postcode)>
-will return I<undef> if passed an illegal or invalif postcode. 
+the postcode is actually in use. C<Geo::postcodes::DK->new($postcode)>
+will return I<undef> if passed an illegal or invalid postcode. 
 
-Attempts to access the methods of a non-existent postal code object will
+An attempt to access the methods of a non-existent postcode object will
 result in a runtime error. This can be avoided by checking if the postal
 code is legal, before creating the object; C<valid($postcode)>
 returns true or false.
@@ -1718,13 +1789,14 @@ returns true or false.
 
 The library was written using the ISO-8859-1 (iso-latin1) character set, and the
 special danish letters 'Æ', 'Ø' and 'Å' occur regularly in the postal places,
-kommune name and fylke name. Usage of other character set may cause havoc.
+kommune name and fylke name. Usage of other character sets may cause havoc.
 Unicode is not tested.
 
 =head1 SEE ALSO
 
-The latest version of this library should always be available on CPAN, 
-but see also the library home page; L<http://bbop.org/perl/GeoPostcodes>.
+The latest version of this library should always be available on CPAN, but see
+also the library home page; L<http://bbop.org/perl/GeoPostcodes> for addittional
+information and sample usage.
 
 =head1 AUTHOR
 

@@ -4,6 +4,6 @@ MANIFEST
 Makefile.PL
 README
 bin/README
-bin/mkpostalinfo
+bin/update
 t/1_procedures.t
 t/2_objects.t
