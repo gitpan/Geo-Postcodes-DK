@@ -5,5 +5,9 @@ Makefile.PL
 README
 bin/README
 bin/update
+eg/basic_dk
+eg/selection_dk
 t/1_procedures.t
 t/2_objects.t
+t/3_selection.t
+t/4_check.t

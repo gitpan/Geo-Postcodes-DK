@@ -1,0 +1,49 @@
+#! /usr/bin/perl -w
+
+use strict;
+
+use Geo::Postcodes::DK 0.03;
+
+################################################################################
+#                                                                              #
+#                                selection_dk                                  #
+#                                ------------                                  #
+#                 Arne Sommer - perl@bbop.org - 21. July 2006                  #
+#                                                                              #
+################################################################################
+
+unless (@ARGV == 2)
+{
+  print "Usage: selection_dk <method> <string>\n";
+  print "Legal methods: ", join(" ", Geo::Postcodes::DK::methods()), ".\n";
+  exit;
+}
+
+my $method = shift(@ARGV);
+my $string = shift(@ARGV);
+
+if (Geo::Postcodes::DK::is_method($method)) # Legal method
+{
+  my @methods = Geo::Postcodes::DK::methods();
+    # Get all the methods supported by this module.
+
+  foreach my $m (@methods)
+  {
+    printf("%-14s", ucfirst($m)); # Print headers for each column
+  }
+  print "\n";
+
+  foreach my $P (Geo::Postcodes::DK->selection($method, $string)) # Iterate over objects
+  {
+    foreach my $m (@methods)           # Iterate over the methods for each object
+    {
+      printf("%-14s", $P->$m() || ""); # Print the column data, or nothing if empty
+    }
+    print "\n";
+  }
+  print "\n";
+}
+else # illegal method.
+{
+  print "Not a legal method '$method'.\n";
+}

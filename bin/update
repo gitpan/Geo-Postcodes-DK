@@ -52,19 +52,19 @@ sub parse_DK
       {
         if ($address eq "Postboks")
         {
-          $type{$postcode} = "B";
+          $type{$postcode} = "BX";
         }
         elsif ($address =~ /Ufrankerede svarforsendelser/)
         {
-          $type   {$postcode} = "U";
+          $type   {$postcode} = "PP";
         }      
         elsif ($owner)
         {
-          $type   {$postcode} = "P"; # Personlig eier
+          $type   {$postcode} = "IO"; # Personlig ejer
         }      
         else
         {
-          $type   {$postcode} = "G";
+          $type   {$postcode} = "ST"; # gadeadresse
           $address{$postcode} = $address;
         }
       }
