@@ -2,7 +2,7 @@
 #                                                                             #
 #        Geo::Postcodes::DK Test Suite 3 - The 'selection' procedure          #
 #        -----------------------------------------------------------          #
-#               Arne Sommer - arne@cpan.org  - 19. July 2006                  #
+#               Arne Sommer - perl@bbop.org  - 31. July 2006                  #
 #                                                                             #
 ###############################################################################
 #                                                                             #
@@ -11,7 +11,7 @@
 #                                                                             #
 ###############################################################################
 
-use Test::More tests => 5;
+use Test::More tests => 8;
 
 BEGIN { use_ok('Geo::Postcodes::DK') };
 
@@ -31,6 +31,10 @@ is_deeply(\@typ1, \@typ,                "type => 'PP'");
 my @typ2 = Geo::Postcodes::DK::selection(type_verbose => 'Ufrankerede svarforsendelser');
 is_deeply(\@typ1, \@typ2,               "type_verbose => 'Ufrankerede svarforsendelser'");
 
+my @typ3 =  Geo::Postcodes::DK::selection(type => 'PP');
+is_deeply(\@typ1, \@typ3,               "type_verbose => 'Ufrankerede svarforsendelser'");
+my @typ4 =  Geo::Postcodes::DK::selection(type => 'PP');
+is_deeply(\@typ1, \@typ4,               "type_verbose => 'Ufrankerede svarforsendelser'");
 
 ###############################################################################
 
@@ -47,3 +51,15 @@ my @oo1 = Geo::Postcodes::DK->selection(location => 'Taastrup');
 is_deeply(\@oo1, \@oo, "List of objects");
 
 ###############################################################################
+
+my @oo2 = Geo::Postcodes::DK->selection("and", location => 'Taastrup');
+
+is_deeply(\@oo1, \@oo2, "List of objects");
+
+## my @oo2 = Geo::Postcodes::DK->selection("all", location => 'Taastrup');
+
+## is_deeply(\@oo1, \@oo2, "List of objects");
+
+###############################################################################
+
+

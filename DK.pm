@@ -1,12 +1,12 @@
 package Geo::Postcodes::DK;
 
-use Geo::Postcodes 0.03;
+use Geo::Postcodes 0.10;
 use base qw(Geo::Postcodes);
 
 use strict;
 use warnings;
 
-our $VERSION = '0.03';
+our $VERSION = '0.10';
 
 ## Which methods are available ##################################################
 
@@ -67,7 +67,7 @@ sub DESTROY {
   delete $Geo::Postcodes::address_of   {$dead_body};
 }
 
-sub methods
+sub get_methods
 {
   return @valid_methods;
 }
