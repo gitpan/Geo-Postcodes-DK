@@ -1,19 +1,19 @@
 package Geo::Postcodes::DK;
 
-use Geo::Postcodes 0.10;
+use Geo::Postcodes 0.20;
 use base qw(Geo::Postcodes);
 
 use strict;
 use warnings;
 
-our $VERSION = '0.10';
+our $VERSION = '0.20';
 
 ## Which methods are available ##################################################
 
-my @valid_methods = qw(postcode location address owner type type_verbose); # selection);
-  # Used by the 'methods' method.
+my @valid_methods = qw(postcode location address owner type type_verbose);
+  # Used by the 'get_methods' procedure.
 
-my %valid_methods;
+my %valid_methods; # Used by the 'is_method' procedure/method.
 
 foreach (@valid_methods)
 {
@@ -40,14 +40,12 @@ sub new
   my $class      = shift;
   my $postcode     = shift;
 
-  return undef unless valid($postcode);
+  return unless valid($postcode);
 
   my $self = bless \(my $dummy), $class;
 
   $Geo::Postcodes::postcode_of  {$self} = $postcode;
   $Geo::Postcodes::location_of  {$self} = location_of($postcode);
-  # $Geo::Postcodes::borough_of {$self} = borough_of($postcode);
-  # $Geo::Postcodes::county_of  {$self} = county_of($postcode);
   $Geo::Postcodes::type_of      {$self} = type_of($postcode);
   $Geo::Postcodes::owner_of     {$self} = owner_of($postcode);
   $Geo::Postcodes::address_of   {$self} = address_of($postcode);
@@ -60,8 +58,6 @@ sub DESTROY {
 
   delete $Geo::Postcodes::postcode_of  {$dead_body};
   delete $Geo::Postcodes::location_of  {$dead_body};
-  # delete $Geo::Postcodes::borough_of {$dead_body};
-  # delete $Geo::Postcodes::county_of  {$dead_body};
   delete $Geo::Postcodes::type_of      {$dead_body};
   delete $Geo::Postcodes::owner_of     {$dead_body};
   delete $Geo::Postcodes::address_of   {$dead_body};
@@ -175,8 +171,13 @@ sub get_postcodes
   return keys %location;
 }
 
-## Returns a list of postcodes if called as a procedure; Geo::Postcodes::NO::selection(xx => 'yy')
-## Returns a list of objects if called as a method;      Geo::Postcodes::NO->selection(xx => 'yy')
+## Returns a list of postcodes if called as a procedure; Geo::Postcodes::DK::selection(xx => 'yy')
+## Returns a list of objects if called as a method;      Geo::Postcodes::DK->selection(xx => 'yy')
+
+sub verify_selectionlist
+{
+  return Geo::Postcodes::_verify_selectionlist("Geo::Postcodes::DK", @_);
+}
 
 sub selection
 {
@@ -1615,7 +1616,7 @@ Geo::Postcodes::DK - Danish postcodes with associated information
 This module can be used object oriented, or as procedures.
 Take your pick.
 
-=head2 OBJECTS
+=head2 AS OBJECTS
 
   use Geo::Postcodes::DK;
 
@@ -1638,7 +1639,7 @@ Take your pick.
 
 The test for a valid postcode can also be done on the object itself, as
 it will be I<undef> when passed an illegal postcode (and thus no object
- at all.)
+at all.)
 
   my $P = Geo::postcodes::DK->new($postcode);
 
@@ -1648,13 +1649,13 @@ A more compact solution:
 
   if ($P = Geo::Postcodes::DK->new($postcode))
   {
-    foreach my $method (Geo::Postcodes::DK::methods())
+    foreach my $method (Geo::Postcodes::DK::get_methods())
     {
       printf("%-20s %s\n", ucfirst($method), $P->$method())
     }
   }
 
-=head2 PROCEDURES
+=head2 AS PROCEDURES
 
   use Geo::postcodes::DK;
 
@@ -1687,7 +1688,7 @@ None.
 
 The module supports the following methods: 'postcode', 'location', 'address',
 'owner', 'type', and -type_verbose'. This list can also be obtained with the
-call C<Geo::Postcodes::DK::methods()>.
+call C<Geo::Postcodes::DK::get_methods()>.
 
 =head1 DEPENDENCIES
 
@@ -1704,16 +1705,17 @@ These functions can be used as methods or procedures.
 
 Does the specified method exist.
 
-=head2 methods
+=head2 get_methods
 
-  my @methods = Geo::postcodes::DK::methods();
-  my @methods = $postcode_object->methods();
+  my @methods = Geo::postcodes::DK::get_methods();
+  my @methods = $postcode_object->get_methods();
 
 A list of methods supported by this class.
 
 =head2 selection
 
-See the I<Geo::Postcodes> manual for a description of this powerfull feature. 
+See the I<Geo::Postcodes> manual for a full description of this function, where it is
+possible to select more than one postcode at a time, based on arbitrary complex rules.
 
 =head1 PROCEDURES
 
@@ -1764,7 +1766,7 @@ What kind of postcode is this, as a code.
 A danish text describing the type. Use the base class for the english
 description.
 
-See the L<'TYPE'> section for a description of the types.
+See the L<TYPE> section for a description of the types.
 
 =head2 type2verbose
 
@@ -1813,7 +1815,7 @@ See the description of the procedure I<type_verbose_of> above.
 
 Use this to get the description.
 
-See the L<'TYPE'> section for a description of the types.
+See the L<TYPE> section for a description of the types.
 
 =head1 TYPE
 
@@ -1837,7 +1839,7 @@ Personlig eier (Individual owner)
 
 Ufrankerede svarforsendelser (Porto Paye receiver)
 
-=cut
+=back
 
 Se L<Geo::Postcodes> for furter descriptions.
 
@@ -1873,16 +1875,14 @@ characters.
 =head1 SEE ALSO
 
 The latest version of this library should always be available on CPAN, but see
-also the library home page; L<http://bbop.org/perl/GeoPostcodes> for additional
+also the library home page; F<http://bbop.org/perl/GeoPostcodes> for additional
 information and sample usage.
 
 =head1 AUTHOR
 
 Arne Sommer, E<lt>perl@bbop.orgE<gt>
 
-=head1 COPYRIGHT AND LICENSE
-
-Copyright (C) 2006 by Arne Sommer
+=head1 LICENSE
 
 This library is free software; you can redistribute it and/or modify
 it under the same terms as Perl itself. 
