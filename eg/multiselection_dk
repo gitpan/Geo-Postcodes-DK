@@ -8,7 +8,7 @@ use Geo::Postcodes::DK 0.20;
 #                                                                              #
 #                             multiselection_dk                                #
 #                             -----------------                                #
-#               Arne Sommer - perl@bbop.org - 03. September 2006               #
+#               Arne Sommer - perl@bbop.org - 07. September 2006               #
 #                                                                              #
 ################################################################################
 
@@ -22,8 +22,10 @@ if ($status == 0)
   print "Usage: \n",
         " * multiselection_dk [all|none]\n",
         " * multiselection_dk [" , 
-        join("|", Geo::Postcodes::get_initial_selectionmodes()), "]? <method> <string> [[",
-        join("|", Geo::Postcodes::get_selectionmodes()), "]? [<method> <string>]]*\n\n";
+        join("|", Geo::Postcodes::get_initial_selectionmodes()),
+        "]? <method> <string> [[",
+        join("|", Geo::Postcodes::get_selectionmodes()),
+        "]? [<method> <string>]]*\n\n";
 
   print "Legal methods: ", join(", ", Geo::Postcodes::DK::get_methods()), "\n\n";
 

@@ -1,12 +1,12 @@
 package Geo::Postcodes::DK;
 
-use Geo::Postcodes 0.20;
+use Geo::Postcodes 0.21;
 use base qw(Geo::Postcodes);
 
 use strict;
 use warnings;
 
-our $VERSION = '0.20';
+our $VERSION = '0.21';
 
 ## Which methods are available ##################################################
 
@@ -37,8 +37,8 @@ $typedesc{PP} = "Ufrankerede svarforsendelser";
 
 sub new
 {
-  my $class      = shift;
-  my $postcode     = shift;
+  my $class    = shift;
+  my $postcode = shift;
 
   return unless valid($postcode);
 
@@ -53,14 +53,15 @@ sub new
   return $self;
 }
 
-sub DESTROY {
-  my $dead_body = $_[0];
+sub DESTROY
+{
+  my $object_id = $_[0];
 
-  delete $Geo::Postcodes::postcode_of  {$dead_body};
-  delete $Geo::Postcodes::location_of  {$dead_body};
-  delete $Geo::Postcodes::type_of      {$dead_body};
-  delete $Geo::Postcodes::owner_of     {$dead_body};
-  delete $Geo::Postcodes::address_of   {$dead_body};
+  delete $Geo::Postcodes::postcode_of  {$object_id};
+  delete $Geo::Postcodes::location_of  {$object_id};
+  delete $Geo::Postcodes::type_of      {$object_id};
+  delete $Geo::Postcodes::owner_of     {$object_id};
+  delete $Geo::Postcodes::address_of   {$object_id};
 }
 
 sub get_methods
@@ -182,6 +183,13 @@ sub verify_selectionlist
 sub selection
 {
   return Geo::Postcodes::_selection("Geo::Postcodes::DK", @_);
+    # Black magic.
+}
+
+sub selection_loop
+{
+  return Geo::Postcodes::_selection_loop('Geo::Postcodes::DK', @_);
+    # Black magic.
 }
 
 ## bin/update begin
@@ -1670,6 +1678,10 @@ A more compact solution:
     printf "Address:         '%s'.\n", address_of($postcode);
   }
 
+=head2 SEE ALSO
+
+See also the sample programs in the C<eg/>-directory of the distribution.
+
 =head1 ABSTRACT
 
 Geo::postcodes::DK - Perl extension for the mapping between danish
@@ -1717,6 +1729,10 @@ A list of methods supported by this class.
 See the I<Geo::Postcodes> manual for a full description of this function, where it is
 possible to select more than one postcode at a time, based on arbitrary complex rules.
 
+=head2 selection_loop
+
+As above.
+
 =head1 PROCEDURES
 
 Note that the I<xxx_of> procedures return I<undef> when passed an illegal
@@ -1733,6 +1749,34 @@ Do we have a legal postcode; a code that follows the syntax rules?
 C<my $boolean = Geo::postcodes::DK::valid($postcode);>
 
 Do we have a valid postcode; a code in actual use?
+
+=head2 get_postcodes
+
+This will return an unsorted list of all the norwegian postcodes.
+
+=head2 verify_selectionlist
+
+This will check the list of arguments for correctness, and should
+be used before calling 'selection'. The procedure returns a modified
+version of the arguments on success, and diagnostic messages on failure.
+
+  my($status, @modified) = Geo::Postcodes::DK::verify_selectionlist(@args);
+
+  if ($status)
+  {
+    my @result = Geo::Postcodes::DK::selection(@modified);
+  }
+  else
+  {
+    print "Diagnostic messages:\n";
+    map { print " - $_\n" } @modified;
+  }
+
+=head2 postcode_of
+
+  $postcode = Geo::Postcodes::NO::postcode_of($postcode);
+
+Used internally by 'selection', but otherwise not very useful.
 
 =head2 location_of
 
