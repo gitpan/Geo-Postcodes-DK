@@ -2,13 +2,13 @@
 
 use strict;
 
-use Geo::Postcodes::DK 0.10;
+use Geo::Postcodes::DK 0.30;
 
 ################################################################################
 #                                                                              #
 #                                 basic_dk                                     #
 #                                 --------                                     #
-#                 Arne Sommer - perl@bbop.org - 30. July 2006                  #
+#              Arne Sommer - perl@bbop.org - 9. September 2006                 #
 #                                                                              #
 ################################################################################
 
@@ -24,11 +24,11 @@ foreach my $postcode (@ARGV)  # One or more postcodes
   {
     my $P = Geo::Postcodes::DK->new($postcode);
 
-    foreach my $method (Geo::Postcodes::DK::get_methods())
-      # Iterate over the methods supported by a danish postcode object.
+    foreach my $field (Geo::Postcodes::DK::get_fields())
+      # Iterate over the fields supported by a danish postcode object.
     {
-      printf("%-10s\t%s\n", ucfirst($method), $P->$method() || ""),
-        # Print the method name, and the result of the method call.
+      printf("%-10s\t%s\n", ucfirst($field), $P->$field() || ""),
+        # Print the field name, and the result of the method call.
     }
 
     printf("%-10s\t%s\n\n", "Type_english", 

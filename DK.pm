@@ -1,23 +1,23 @@
 package Geo::Postcodes::DK;
 
-use Geo::Postcodes 0.21;
+use Geo::Postcodes 0.30;
 use base qw(Geo::Postcodes);
 
 use strict;
 use warnings;
 
-our $VERSION = '0.21';
+our $VERSION = '0.30';
 
-## Which methods are available ##################################################
+## Which fields are available ##################################################
 
-my @valid_methods = qw(postcode location address owner type type_verbose);
-  # Used by the 'get_methods' procedure.
+my @valid_fields = qw(postcode location address owner type type_verbose);
+  # Used by the 'get_fields' procedure.
 
-my %valid_methods; # Used by the 'is_method' procedure/method.
+my %valid_fields; # Used by the 'is_field' procedure/method.
 
-foreach (@valid_methods)
+foreach (@valid_fields)
 {
-  $valid_methods{$_} = 1;
+  $valid_fields{$_} = 1;
 }
 
 ## Private Variables ############################################################
@@ -64,17 +64,17 @@ sub DESTROY
   delete $Geo::Postcodes::address_of   {$object_id};
 }
 
-sub get_methods
+sub get_fields
 {
-  return @valid_methods;
+  return @valid_fields;
 }
 
-sub is_method
+sub is_field
 {
-  my $method = shift;
-  $method    = shift if $method =~ /Geo::Postcodes/; # Called on an object.
+  my $field = shift;
+  $field    = shift if $field =~ /Geo::Postcodes/; # Called on an object.
 
-  return 1 if $valid_methods{$method};
+  return 1 if $valid_fields{$field};
   return 0;
 }
 
@@ -1626,61 +1626,57 @@ Take your pick.
 
 =head2 AS OBJECTS
 
-  use Geo::Postcodes::DK;
+ use Geo::Postcodes::DK;
 
-  my $postcode = '1171';
+ my $postcode = '1171';
 
-  if (Geo::Postcodes::DK::valid($postcode)) # A valid postcode?
-  {
-    my $P = Geo::Postcodes::DK->new($postcode);
+ if (Geo::Postcodes::DK::valid($postcode)) # A valid postcode?
+ {
+   my $P = Geo::Postcodes::DK->new($postcode);
 
-    printf "Postcode         '%s'.\n", $P->postcode();
-    printf "Postal location: '%s'.\n", $P->location();
-    printf "Borough:         '%s'.\n", $P->borough();
-    printf "County:          '%s'.\n", $P->county();
-    printf "Owner:           '%s'.\n", $P->owner();
-    printf "Address:         '%s'.\n", $P->address();
-    printf "Postcode type:   '%s'.\n", $P->type(); 
-    printf "- in danish:     '%s'.\n", $P->type_verbose(); 
-    printf "- in english:    '%s'.\n", $P->Geo::Postcodes::type_verbose(); 
-  }
+   printf "Postcode         '%s'.\n", $P->postcode();
+   printf "Postal location: '%s'.\n", $P->location();
+   printf "Borough:         '%s'.\n", $P->borough();
+   printf "County:          '%s'.\n", $P->county();
+   printf "Owner:           '%s'.\n", $P->owner();
+   printf "Address:         '%s'.\n", $P->address();
+   printf "Postcode type:   '%s'.\n", $P->type(); 
+   printf "- in danish:     '%s'.\n", $P->type_verbose(); 
+   printf "- in english:    '%s'.\n", $P->Geo::Postcodes::type_verbose(); 
+ }
 
 The test for a valid postcode can also be done on the object itself, as
 it will be I<undef> when passed an illegal postcode (and thus no object
 at all.)
 
-  my $P = Geo::postcodes::DK->new($postcode);
+ my $P = Geo::postcodes::DK->new($postcode);
 
-  if ($P) { ... }
+ if ($P) { ... }
 
 A more compact solution:
 
-  if ($P = Geo::Postcodes::DK->new($postcode))
-  {
-    foreach my $method (Geo::Postcodes::DK::get_methods())
-    {
-      printf("%-20s %s\n", ucfirst($method), $P->$method())
-    }
-  }
+ if ($P = Geo::Postcodes::DK->new($postcode))
+ {
+   foreach my $field (Geo::Postcodes::DK::get_fields())
+   {
+     printf("%-20s %s\n", ucfirst($field), $P->$field())
+   }
+ }
 
 =head2 AS PROCEDURES
 
-  use Geo::postcodes::DK;
+ use Geo::postcodes::DK;
 
-  my $postcode = "1171";
+ my $postcode = "1171";
 
-  if (Geo::Postcodes::DK::valid($postcode))
-  {
-    printf "Postcode"        '%s'.\n", $postcode;
-    printf "Postal location: '%s'.\n", location_of($postcode);
-    printf "Postcode type:   '%s'.\n", type_of($postcode); 
-    printf "Owner:           '%s'.\n", owner_of($postcode);
-    printf "Address:         '%s'.\n", address_of($postcode);
-  }
-
-=head2 SEE ALSO
-
-See also the sample programs in the C<eg/>-directory of the distribution.
+ if (Geo::Postcodes::DK::valid($postcode))
+ {
+   printf "Postcode"        '%s'.\n", $postcode;
+   printf "Postal location: '%s'.\n", location_of($postcode);
+   printf "Postcode type:   '%s'.\n", type_of($postcode); 
+   printf "Owner:           '%s'.\n", owner_of($postcode);
+   printf "Address:         '%s'.\n", address_of($postcode);
+ }
 
 =head1 ABSTRACT
 
@@ -1698,9 +1694,9 @@ and use this library to get the postal name.
 
 None.
 
-The module supports the following methods: 'postcode', 'location', 'address',
+The module supports the following fields: 'postcode', 'location', 'address',
 'owner', 'type', and -type_verbose'. This list can also be obtained with the
-call C<Geo::Postcodes::DK::get_methods()>.
+call C<Geo::Postcodes::DK::get_fields()>.
 
 =head1 DEPENDENCIES
 
@@ -1710,24 +1706,29 @@ This module is a subclass of Geo::Postcodes, which must be installed first.
 
 These functions can be used as methods or procedures.
 
-=head2 is_method
+=head2 is_field
 
- my $boolean = Geo::postcodes::DK::is_method($method);
- my $boolean = $postcode_object->is_method($method);
+ my $boolean = Geo::postcodes::DK::is_field($field);
+ my $boolean = $postcode_object->is_field($field);
 
-Does the specified method exist.
+Does the specified field exist.
 
-=head2 get_methods
+=head2 get_fields
 
-  my @methods = Geo::postcodes::DK::get_methods();
-  my @methods = $postcode_object->get_methods();
+  my @fields = Geo::postcodes::DK::get_fields();
+  my @fields = $postcode_object->get_fields();
 
-A list of methods supported by this class.
+A list of fields supported by this class.
 
 =head2 selection
 
-See the I<Geo::Postcodes> manual for a full description of this function, where it is
-possible to select more than one postcode at a time, based on arbitrary complex rules.
+This procedure/method makes it possible to select more than one postcode at a time,
+based on arbitrary complex rules.
+
+See the selection documentation (I<perldoc Geo::Postcodes::Selection> or
+I<man Geo::Postcodes::Selection>) for a full description, and the tutorial
+(I<perldoc Geo::Postcodes::Tutorial> or I<man Geo::Postcodes::Tutorial>)
+for sample code.
 
 =head2 selection_loop
 
@@ -1917,6 +1918,10 @@ application program should fix this, if the current locale supports these
 characters.
 
 =head1 SEE ALSO
+
+See also the sample programs in the C<eg/>-directory of the distribution,
+and the tutorial I<Geo::Postcodes::Tutorial> available as
+C<perldoc Geo::Postcodes::Tutorial> or C<man Geo::Postcodes::Tutorial>.
 
 The latest version of this library should always be available on CPAN, but see
 also the library home page; F<http://bbop.org/perl/GeoPostcodes> for additional

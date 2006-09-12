@@ -5,7 +5,7 @@ use ExtUtils::MakeMaker;
 WriteMakefile(
     'NAME'		=> 'Geo::Postcodes::DK',
     'VERSION_FROM'	=> 'DK.pm', # finds $VERSION
-    'PREREQ_PM'		=> { Geo::Postcodes => 0.21 },
+    'PREREQ_PM'		=> { Geo::Postcodes => 0.30 },
     ($] >= 5.005 ?    ## Add these new keywords supported since 5.005
       (ABSTRACT_FROM => 'DK.pm', # retrieve abstract from module
        AUTHOR     => 'Arne Sommer <perl@bbop.org>') : ()),
