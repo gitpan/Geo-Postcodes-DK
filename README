@@ -3,12 +3,19 @@ Geo::Postcodes::DK::README
 This module gives the official (Post Danmark) mapping between danish
 postal codes and the postal location, address and address owner.
 
-It can be used object oriented (postnummer objects), or as procedures.
+It can be used object oriented (postcode objects), or as procedures.
 Take your pick.
 
 INSTALLATION
 
-To install this module type the following:
+To install this module type the following, if you are using Build.PL:
+
+   perl Build.PL
+  ./Build
+  ./Build test
+  ./Build install
+
+Or the following, if you are using MakeMaker:
 
    perl Makefile.PL
    make
@@ -17,7 +24,7 @@ To install this module type the following:
 
 DEPENDENCIES
 
-It is a subclass of Geo::Postcodes, which must be installed first.
+This module is a sublass of Geo::Postcodes, which must be installed first.
 
 USAGE
 
@@ -25,8 +32,8 @@ See the documentation with the command 'perldoc Geo::Postcodes::DK.pm'
 in the source directory. 'perldoc Geo::Postcodes::DK' or 'man
 Geo::Postcodes::DK' can be used after installation.
 
-It is possible to update the postcodes yourself, but this is not
-recommended. See the file './bin/README'.
+It is possible to update the postcodes yourself, with a single command,
+but this is not recommended. See the file './misc/README'.
 
 COPYRIGHT AND LICENCE
 

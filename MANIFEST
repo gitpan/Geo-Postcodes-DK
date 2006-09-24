@@ -1,13 +1,15 @@
 Changes
-DK.pm
+lib/Geo/Postcodes/DK.pm
 MANIFEST
+Build.PL
 Makefile.PL
 README
-bin/README
-bin/update
+misc/README
+misc/update_dk
 eg/basic_dk
 eg/selection_dk
 eg/multiselection_dk
+eg/static_dk
 t/1_procedures.t
 t/2_objects.t
 t/3_selection.t
@@ -17,4 +19,4 @@ t/6_validselection.t
 t/7_pod.t
 t/7_pod_coverage.t
 t/8_exporter.t
-META.yml                                 Module meta-data (added by MakeMaker)
+META.yml

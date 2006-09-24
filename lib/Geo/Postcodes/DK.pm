@@ -1,12 +1,18 @@
 package Geo::Postcodes::DK;
 
-use Geo::Postcodes 0.30;
+#################################################################################
+#                                                                               #
+#           This file is written by Arne Sommer - perl@bbop.org                 #
+#                                                                               #
+#################################################################################
+
+use Geo::Postcodes 0.31;
 use base qw(Geo::Postcodes);
 
 use strict;
 use warnings;
 
-our $VERSION = '0.30';
+our $VERSION = '0.31';
 
 ## Which fields are available ##################################################
 
@@ -192,17 +198,16 @@ sub selection_loop
     # Black magic.
 }
 
-## bin/update begin
-## This data structure was auto generated on Wed Jul 19 13:03:36 2006. Do NOT edit it!
+## misc/update begin
+## This data structure was auto generated on Sun Sep 24 13:18:15 2006. Do NOT edit it!
 
-$location{'0555'} = "Scanning"; $owner{'0555'} = "Data Scanning A/S, 'Læs Ind'-service";
-$location{'0555'} = "Scanning"; $owner{'0555'} = "Data Scanning A/S, 'Læs Ind'-service";
+$location{'0555'} = "Scanning"; $owner{'0555'} = "Data Scanning A/S, \"Læs Ind\"-service";
+$location{'0555'} = "Scanning"; $owner{'0555'} = "Data Scanning A/S, \"Læs Ind\"-service";
 $location{'0800'} = "Høje Taastrup"; $owner{'0800'} = "BG-Bank A/S"; $type{'0800'} = "IO";
 $location{'0877'} = "Valby"; $owner{'0877'} = "Aller Press (konkurrencer)"; $type{'0877'} = "IO";
 $location{'0900'} = "København C"; $owner{'0900'} = "Københavns Postcenter + erhvervskunder";
 $location{'0910'} = "København C"; $type{'0910'} = "PP";
 $location{'0929'} = "København C"; $type{'0929'} = "PP";
-$location{'0999'} = "København C"; $owner{'0999'} = "DR Byen"; $type{'0999'} = "IO";
 $location{'1000'} = "København K"; $owner{'1000'} = "Købmagergade Postkontor"; $type{'1000'} = "IO";
 $location{'1001'} = "København K"; $type{'1001'} = "BX";
 $location{'1002'} = "København K"; $type{'1002'} = "BX";
@@ -339,12 +344,12 @@ $location{'1214'} = "København K"; $address{'1214'} = "Tøjhusgade"; $type{'1214'
 $location{'1215'} = "København K"; $address{'1215'} = "Børsgade"; $type{'1215'} = "ST";
 $location{'1216'} = "København K"; $address{'1216'} = "Slotsholmsgade"; $type{'1216'} = "ST";
 $location{'1217'} = "København K"; $address{'1217'} = "Børsen"; $type{'1217'} = "ST";
-$location{'1218'} = "København K"; $address{'1218'} = "Christiansborg Slotsplads"; $type{'1218'} = "ST";
-$location{'1218'} = "København K"; $address{'1218'} = "Christiansborg Slotsplads"; $type{'1218'} = "ST";
-$location{'1218'} = "København K"; $address{'1218'} = "Christiansborg Slotsplads"; $type{'1218'} = "ST";
-$location{'1218'} = "København K"; $address{'1218'} = "Christiansborg Slotsplads"; $type{'1218'} = "ST";
-$location{'1218'} = "København K"; $address{'1218'} = "Christiansborg Slotsplads"; $type{'1218'} = "ST";
-$location{'1218'} = "København K"; $address{'1218'} = "Christiansborg Slotsplads"; $type{'1218'} = "ST";
+$location{'1218'} = "København K"; $address{'1218'} = "Prins Jørgens Gård"; $type{'1218'} = "ST";
+$location{'1218'} = "København K"; $address{'1218'} = "Prins Jørgens Gård"; $type{'1218'} = "ST";
+$location{'1218'} = "København K"; $address{'1218'} = "Prins Jørgens Gård"; $type{'1218'} = "ST";
+$location{'1218'} = "København K"; $address{'1218'} = "Prins Jørgens Gård"; $type{'1218'} = "ST";
+$location{'1218'} = "København K"; $address{'1218'} = "Prins Jørgens Gård"; $type{'1218'} = "ST";
+$location{'1218'} = "København K"; $address{'1218'} = "Prins Jørgens Gård"; $type{'1218'} = "ST";
 $location{'1219'} = "København K"; $address{'1219'} = "Christians Brygge ulige nr. + 2-22"; $type{'1219'} = "ST";
 $location{'1220'} = "København K"; $address{'1220'} = "Frederiksholms Kanal"; $type{'1220'} = "ST";
 $location{'1240'} = "København K"; $owner{'1240'} = "Folketinget"; $type{'1240'} = "IO";
@@ -377,8 +382,8 @@ $location{'1302'} = "København K"; $address{'1302'} = "Dronningens Tværgade"; $t
 $location{'1303'} = "København K"; $address{'1303'} = "Hindegade"; $type{'1303'} = "ST";
 $location{'1304'} = "København K"; $address{'1304'} = "Adelgade"; $type{'1304'} = "ST";
 $location{'1306'} = "København K"; $address{'1306'} = "Kronprinsessegade"; $type{'1306'} = "ST";
-$location{'1307'} = "København K"; $address{'1307'} = "Sølvgade"; $type{'1307'} = "ST";
-$location{'1307'} = "København K"; $address{'1307'} = "Sølvgade"; $type{'1307'} = "ST";
+$location{'1307'} = "København K"; $address{'1307'} = "Georg Brandes Plads"; $type{'1307'} = "ST";
+$location{'1307'} = "København K"; $address{'1307'} = "Georg Brandes Plads"; $type{'1307'} = "ST";
 $location{'1308'} = "København K"; $address{'1308'} = "Klerkegade"; $type{'1308'} = "ST";
 $location{'1309'} = "København K"; $address{'1309'} = "Rosengade"; $type{'1309'} = "ST";
 $location{'1310'} = "København K"; $address{'1310'} = "Fredericiagade"; $type{'1310'} = "ST";
@@ -463,9 +468,9 @@ $location{'1428'} = "København K"; $address{'1428'} = "Andreas Bjørns Gade"; $ty
 $location{'1429'} = "København K"; $address{'1429'} = "Burmeistersgade"; $type{'1429'} = "ST";
 $location{'1430'} = "København K"; $address{'1430'} = "Bodenhoffs Plads"; $type{'1430'} = "ST";
 $location{'1431'} = "København K"; $address{'1431'} = "Islands Plads"; $type{'1431'} = "ST";
-$location{'1432'} = "København K"; $address{'1432'} = "Margretheholmsvej"; $type{'1432'} = "ST";
-$location{'1432'} = "København K"; $address{'1432'} = "Margretheholmsvej"; $type{'1432'} = "ST";
-$location{'1432'} = "København K"; $address{'1432'} = "Margretheholmsvej"; $type{'1432'} = "ST";
+$location{'1432'} = "København K"; $address{'1432'} = "William Wains Gade"; $type{'1432'} = "ST";
+$location{'1432'} = "København K"; $address{'1432'} = "William Wains Gade"; $type{'1432'} = "ST";
+$location{'1432'} = "København K"; $address{'1432'} = "William Wains Gade"; $type{'1432'} = "ST";
 $location{'1433'} = "København K"; $address{'1433'} = "Christiansholms Ø"; $type{'1433'} = "ST";
 $location{'1433'} = "København K"; $address{'1433'} = "Christiansholms Ø"; $type{'1433'} = "ST";
 $location{'1433'} = "København K"; $address{'1433'} = "Christiansholms Ø"; $type{'1433'} = "ST";
@@ -482,49 +487,49 @@ $location{'1436'} = "København K"; $address{'1436'} = "Kuglegården"; $type{'1436
 $location{'1436'} = "København K"; $address{'1436'} = "Kuglegården"; $type{'1436'} = "ST";
 $location{'1436'} = "København K"; $address{'1436'} = "Kuglegården"; $type{'1436'} = "ST";
 $location{'1436'} = "København K"; $address{'1436'} = "Kuglegården"; $type{'1436'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1437'} = "København K"; $address{'1437'} = "Leo Mathisens Vej"; $type{'1437'} = "ST";
-$location{'1438'} = "København K"; $address{'1438'} = "Judichærs Kvarter"; $type{'1438'} = "ST";
-$location{'1438'} = "København K"; $address{'1438'} = "Judichærs Kvarter"; $type{'1438'} = "ST";
-$location{'1438'} = "København K"; $address{'1438'} = "Judichærs Kvarter"; $type{'1438'} = "ST";
-$location{'1438'} = "København K"; $address{'1438'} = "Judichærs Kvarter"; $type{'1438'} = "ST";
-$location{'1438'} = "København K"; $address{'1438'} = "Judichærs Kvarter"; $type{'1438'} = "ST";
-$location{'1438'} = "København K"; $address{'1438'} = "Judichærs Kvarter"; $type{'1438'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1439'} = "København K"; $address{'1439'} = "H.C. Sneedorffs Allé"; $type{'1439'} = "ST";
-$location{'1440'} = "København K"; $address{'1440'} = "Mælkevejen"; $type{'1440'} = "ST";
-$location{'1440'} = "København K"; $address{'1440'} = "Mælkevejen"; $type{'1440'} = "ST";
-$location{'1440'} = "København K"; $address{'1440'} = "Mælkevejen"; $type{'1440'} = "ST";
-$location{'1440'} = "København K"; $address{'1440'} = "Mælkevejen"; $type{'1440'} = "ST";
-$location{'1440'} = "København K"; $address{'1440'} = "Mælkevejen"; $type{'1440'} = "ST";
-$location{'1440'} = "København K"; $address{'1440'} = "Mælkevejen"; $type{'1440'} = "ST";
-$location{'1440'} = "København K"; $address{'1440'} = "Mælkevejen"; $type{'1440'} = "ST";
-$location{'1440'} = "København K"; $address{'1440'} = "Mælkevejen"; $type{'1440'} = "ST";
-$location{'1440'} = "København K"; $address{'1440'} = "Mælkevejen"; $type{'1440'} = "ST";
-$location{'1440'} = "København K"; $address{'1440'} = "Mælkevejen"; $type{'1440'} = "ST";
-$location{'1440'} = "København K"; $address{'1440'} = "Mælkevejen"; $type{'1440'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1437'} = "København K"; $address{'1437'} = "Schifters Kvarter"; $type{'1437'} = "ST";
+$location{'1438'} = "København K"; $address{'1438'} = "Orlogsværftvej"; $type{'1438'} = "ST";
+$location{'1438'} = "København K"; $address{'1438'} = "Orlogsværftvej"; $type{'1438'} = "ST";
+$location{'1438'} = "København K"; $address{'1438'} = "Orlogsværftvej"; $type{'1438'} = "ST";
+$location{'1438'} = "København K"; $address{'1438'} = "Orlogsværftvej"; $type{'1438'} = "ST";
+$location{'1438'} = "København K"; $address{'1438'} = "Orlogsværftvej"; $type{'1438'} = "ST";
+$location{'1438'} = "København K"; $address{'1438'} = "Orlogsværftvej"; $type{'1438'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1439'} = "København K"; $address{'1439'} = "A.H. Vedels Plads"; $type{'1439'} = "ST";
+$location{'1440'} = "København K"; $address{'1440'} = "Psyak"; $type{'1440'} = "ST";
+$location{'1440'} = "København K"; $address{'1440'} = "Psyak"; $type{'1440'} = "ST";
+$location{'1440'} = "København K"; $address{'1440'} = "Psyak"; $type{'1440'} = "ST";
+$location{'1440'} = "København K"; $address{'1440'} = "Psyak"; $type{'1440'} = "ST";
+$location{'1440'} = "København K"; $address{'1440'} = "Psyak"; $type{'1440'} = "ST";
+$location{'1440'} = "København K"; $address{'1440'} = "Psyak"; $type{'1440'} = "ST";
+$location{'1440'} = "København K"; $address{'1440'} = "Psyak"; $type{'1440'} = "ST";
+$location{'1440'} = "København K"; $address{'1440'} = "Psyak"; $type{'1440'} = "ST";
+$location{'1440'} = "København K"; $address{'1440'} = "Psyak"; $type{'1440'} = "ST";
+$location{'1440'} = "København K"; $address{'1440'} = "Psyak"; $type{'1440'} = "ST";
+$location{'1440'} = "København K"; $address{'1440'} = "Psyak"; $type{'1440'} = "ST";
 $location{'1441'} = "København K"; $address{'1441'} = "Norddyssen"; $type{'1441'} = "ST";
 $location{'1441'} = "København K"; $address{'1441'} = "Norddyssen"; $type{'1441'} = "ST";
 $location{'1441'} = "København K"; $address{'1441'} = "Norddyssen"; $type{'1441'} = "ST";
@@ -565,8 +570,8 @@ $location{'1509'} = "København V"; $type{'1509'} = "BX";
 $location{'1510'} = "København V"; $type{'1510'} = "BX";
 $location{'1532'} = "København V"; $owner{'1532'} = "Internationalt Postcenter, returforsendelser + consignment"; $type{'1532'} = "IO";
 $location{'1533'} = "København V"; $owner{'1533'} = "Internationalt Postcenter"; $type{'1533'} = "IO";
-$location{'1550'} = "København V"; $address{'1550'} = "Bag Rådhuset"; $type{'1550'} = "ST";
-$location{'1550'} = "København V"; $address{'1550'} = "Bag Rådhuset"; $type{'1550'} = "ST";
+$location{'1550'} = "København V"; $address{'1550'} = "Rådhuspladsen"; $type{'1550'} = "ST";
+$location{'1550'} = "København V"; $address{'1550'} = "Rådhuspladsen"; $type{'1550'} = "ST";
 $location{'1551'} = "København V"; $address{'1551'} = "Jarmers Plads"; $type{'1551'} = "ST";
 $location{'1552'} = "København V"; $address{'1552'} = "Vester Voldgade"; $type{'1552'} = "ST";
 $location{'1553'} = "København V"; $address{'1553'} = "Langebro"; $type{'1553'} = "ST";
@@ -578,8 +583,8 @@ $location{'1557'} = "København V"; $address{'1557'} = "Ny Kongensgade, fra 18 + 
 $location{'1558'} = "København V"; $address{'1558'} = "Christiansborggade"; $type{'1558'} = "ST";
 $location{'1559'} = "København V"; $address{'1559'} = "Christians Brygge 24 - 30"; $type{'1559'} = "ST";
 $location{'1560'} = "København V"; $address{'1560'} = "Kalvebod Brygge"; $type{'1560'} = "ST";
-$location{'1561'} = "København V"; $address{'1561'} = "Fisketorvet"; $type{'1561'} = "ST";
-$location{'1561'} = "København V"; $address{'1561'} = "Fisketorvet"; $type{'1561'} = "ST";
+$location{'1561'} = "København V"; $address{'1561'} = "Kalvebod Pladsvej"; $type{'1561'} = "ST";
+$location{'1561'} = "København V"; $address{'1561'} = "Kalvebod Pladsvej"; $type{'1561'} = "ST";
 $location{'1562'} = "København V"; $address{'1562'} = "Hambrosgade"; $type{'1562'} = "ST";
 $location{'1563'} = "København V"; $address{'1563'} = "Otto Mønsteds Plads"; $type{'1563'} = "ST";
 $location{'1564'} = "København V"; $address{'1564'} = "Rysensteensgade"; $type{'1564'} = "ST";
@@ -619,8 +624,8 @@ $location{'1616'} = "København V"; $address{'1616'} = "Stenosgade"; $type{'1616'
 $location{'1617'} = "København V"; $address{'1617'} = "Bagerstræde"; $type{'1617'} = "ST";
 $location{'1618'} = "København V"; $address{'1618'} = "Tullinsgade"; $type{'1618'} = "ST";
 $location{'1619'} = "København V"; $address{'1619'} = "Værnedamsvej Lige nr."; $type{'1619'} = "ST";
-$location{'1620'} = "København V"; $address{'1620'} = "Vesterbros Torv"; $type{'1620'} = "ST";
-$location{'1620'} = "København V"; $address{'1620'} = "Vesterbros Torv"; $type{'1620'} = "ST";
+$location{'1620'} = "København V"; $address{'1620'} = "Vesterbrogade 1-151 + 2-150"; $type{'1620'} = "ST";
+$location{'1620'} = "København V"; $address{'1620'} = "Vesterbrogade 1-151 + 2-150"; $type{'1620'} = "ST";
 $location{'1621'} = "København V"; $address{'1621'} = "Frederiksberg Allé 1 - 13B"; $type{'1621'} = "ST";
 $location{'1622'} = "København V"; $address{'1622'} = "Boyesgade Ulige nr"; $type{'1622'} = "ST";
 $location{'1623'} = "København V"; $address{'1623'} = "Kingosgade 1-9 + 2-6"; $type{'1623'} = "ST";
@@ -643,8 +648,8 @@ $location{'1656'} = "København V"; $address{'1656'} = "Gasværksvej"; $type{'1656
 $location{'1657'} = "København V"; $address{'1657'} = "Eskildsgade"; $type{'1657'} = "ST";
 $location{'1658'} = "København V"; $address{'1658'} = "Absalonsgade"; $type{'1658'} = "ST";
 $location{'1659'} = "København V"; $address{'1659'} = "Svendsgade"; $type{'1659'} = "ST";
-$location{'1660'} = "København V"; $address{'1660'} = "Otto Krabbes Plads"; $type{'1660'} = "ST";
-$location{'1660'} = "København V"; $address{'1660'} = "Otto Krabbes Plads"; $type{'1660'} = "ST";
+$location{'1660'} = "København V"; $address{'1660'} = "Dannebrogsgade"; $type{'1660'} = "ST";
+$location{'1660'} = "København V"; $address{'1660'} = "Dannebrogsgade"; $type{'1660'} = "ST";
 $location{'1661'} = "København V"; $address{'1661'} = "Westend"; $type{'1661'} = "ST";
 $location{'1662'} = "København V"; $address{'1662'} = "Saxogade"; $type{'1662'} = "ST";
 $location{'1663'} = "København V"; $address{'1663'} = "Oehlenschlægersgade"; $type{'1663'} = "ST";
@@ -1610,7 +1615,7 @@ $location{'950'} = "Porkeri";
 $location{'960'} = "Hov";
 $location{'970'} = "Sumba";
 
-## bin/update end
+## misc/update end
 
 1;
 __END__
@@ -1919,21 +1924,20 @@ characters.
 
 =head1 SEE ALSO
 
-See also the sample programs in the C<eg/>-directory of the distribution,
-and the tutorial I<Geo::Postcodes::Tutorial> available as
-C<perldoc Geo::Postcodes::Tutorial> or C<man Geo::Postcodes::Tutorial>.
+See also the sample programs in the C<eg/>-directory of the distribution, the
+tutorial (C<perldoc Geo::Postcodes::Tutorial> or C<man Geo::Postcodes::Tutorial>)
+and the selection manual (I<perldoc Geo::Postcodes::Selection> or
+I<man Geo::Postcodes::Selection>) for usage details.
 
 The latest version of this library should always be available on CPAN, but see
 also the library home page; F<http://bbop.org/perl/GeoPostcodes> for additional
 information and sample usage.
 
-=head1 AUTHOR
+=head1 COPYRIGHT AND LICENCE
 
-Arne Sommer, E<lt>perl@bbop.orgE<gt>
+Copyright (C) 2006 by Arne Sommer - perl@bbop.org
 
-=head1 LICENSE
-
-This library is free software; you can redistribute it and/or modify
-it under the same terms as Perl itself. 
+This library is free software; you can redistribute them and/or modify
+it under the same terms as Perl itself.
 
 =cut

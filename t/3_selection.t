@@ -2,7 +2,7 @@
 #                                                                             #
 #        Geo::Postcodes::DK Test Suite 3 - The 'selection' procedure          #
 #        -----------------------------------------------------------          #
-#               Arne Sommer - perl@bbop.org  - 31. July 2006                  #
+#             Arne Sommer - perl@bbop.org  - 24. September 2006               #
 #                                                                             #
 ###############################################################################
 #                                                                             #
@@ -17,7 +17,8 @@ BEGIN { use_ok('Geo::Postcodes::DK') };
 
 ###############################################################################
 
-my @loc  = qw(0900 0910 0929 0999);
+## my @loc  = qw(0900 0910 0929 0999);
+my @loc  = qw(0900 0910 0929);
 my @loc1 = Geo::Postcodes::DK::selection(location => 'København C');
 is_deeply(\@loc1, \@loc,                "location => 'København C'");
 

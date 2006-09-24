@@ -2,7 +2,7 @@
 #                                                                             #
 #          Geo::Postcodes::DK Test Suite 1 - Procedural interface             #
 #          ------------------------------------------------------             # 
-#               Arne Sommer - perl@bbop.org  - 19. July 2006                  #
+#             Arne Sommer - perl@bbop.org  - 24. September 2006               #
 #                                                                             #
 ###############################################################################
 #                                                                             #
@@ -11,7 +11,7 @@
 #                                                                             #
 ###############################################################################
 
-use Test::More tests => 42;
+use Test::More tests => 34;
 
 BEGIN { use_ok('Geo::Postcodes::DK') };
 
@@ -48,15 +48,16 @@ is( Geo::Postcodes::DK::owner_of       ("215"), undef,      "Postcode > Owner");
 
 #################################################################################
 
-ok( Geo::Postcodes::DK::legal          ("0999"),                   "Legal postcode");
-ok( Geo::Postcodes::DK::valid          ("0999"),                   "Postcode in use");
-is( Geo::Postcodes::DK::location_of    ("0999"), "København C",    "Postcode > Location");
-is( Geo::Postcodes::DK::type_of        ("0999"), "IO",             "Postcode > Type");
-is( Geo::Postcodes::DK::type_verbose_of("0999"), "Personlig ejer", "Postcode > Type");
-is( Geo::Postcodes::type_verbose_of    ("0999"), undef,            "Postcode > Type");
-is( Geo::Postcodes::DK::address_of     ("0999"), undef,            "Postcode > Address");
-is( Geo::Postcodes::DK::owner_of       ("0999"), "DR Byen",        "Postcode > Owner");
+## The '0999' postcode is not present in current versions of the module.
 
+# ok( Geo::Postcodes::DK::legal          ("0999"),                   "Legal postcode");
+# ok( Geo::Postcodes::DK::valid          ("0999"),                   "Postcode in use");
+# is( Geo::Postcodes::DK::location_of    ("0999"), "København C",    "Postcode > Location");
+# is( Geo::Postcodes::DK::type_of        ("0999"), "IO",             "Postcode > Type");
+# is( Geo::Postcodes::DK::type_verbose_of("0999"), "Personlig ejer", "Postcode > Type");
+# is( Geo::Postcodes::type_verbose_of    ("0999"), undef,            "Postcode > Type");
+# is( Geo::Postcodes::DK::address_of     ("0999"), undef,            "Postcode > Address");
+# is( Geo::Postcodes::DK::owner_of       ("0999"), "DR Byen",        "Postcode > Owner");
 
 ## And now, error handling ######################################################
 

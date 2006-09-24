@@ -1,5 +1,31 @@
 Revision history for Perl extension Geo::Postcodes::DK
 ------------------------------------------------------
+2006-09-24 14:00 Arne Sommer
+ * Released version 0.31.
+
+2006-09-24 13:30 Arne Sommer
+ * Rewritten the tests 't/1_procedures.t' and 't_3_selection.t', as the
+   postcode '0999' is not available in 'postnr.xls'.
+
+2006-09-22 22:00 Arne Sommer
+ * Rewritten 'misc/update' to support the '-update' command line argument,
+   caused by by changes in 'Geo::Postcodes::Update'.
+
+2006-09-15 22:00 Arne Sommer
+ * Changed the postcode file used by 'misc/update_dk' to 'postnr.xls', as it
+   is availble for automatic downloading.
+
+2006-09-15 10:30 Arne Sommer
+ * Made some minor changes in 'misc/update', caused by changes in
+   'Geo::Postcodes::Update', and renamed the program to 'misc/update_dk'. 
+
+2006-09-14 23:00 Arne Sommer
+ * Added support for 'Build.PL', in addition to the present 'Makefile.PL'.
+   This reqired moving 'DK.pm' to a new directory 'lib/Geo/Postcodes/' in the
+   distribution.
+ * Renamed the 'bin' directory to 'misc' to avoid installation of the files in
+   it by 'Build.PL'. This caused some changes in the code.
+
 2006-09-12 21:00 Arne Sommer
  * Released version 0.30.
 
@@ -130,4 +156,4 @@ Revision history for Perl extension Geo::Postcodes::DK
  * Released version 0.01.
 
 2006-07-10 12:40 Arne Sommer
- * Original version; created by "h2xs -Xan Geo::Postcodes::DK".
+ * Original version; created by 'h2xs -Xan Geo::Postcodes::DK'.
