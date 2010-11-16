@@ -1,19 +1,22 @@
----
-name: Geo-Postcodes-DK
-version: 0.31
+--- #YAML:1.0
+name:               Geo-Postcodes-DK
+version:            0.32
+abstract:           Danish postcodes with associated information
 author:
-abstract: Danish postcodes with associated information
-license: perl
+    - Arne Sommer <perl@bbop.org>
+license:            unknown
+distribution_type:  module
+configure_requires:
+    ExtUtils::MakeMaker:  0
+build_requires:
+    ExtUtils::MakeMaker:  0
 requires:
-  Geo::Postcodes: 0.31
-  perl: 5.6.1
-generated_by: Module::Build version 0.2805
+    Geo::Postcodes:  0.31
+no_index:
+    directory:
+        - t
+        - inc
+generated_by:       ExtUtils::MakeMaker version 6.55_02
 meta-spec:
-  url: http://module-build.sourceforge.net/META-spec-v1.2.html
-  version: 1.2
-provides:
-  Geo::Postcodes::DK:
-    file: lib/Geo/Postcodes/DK.pm
-    version: 0.31
-resources:
-  license: http://dev.perl.org/licenses/
+    url:      http://module-build.sourceforge.net/META-spec-v1.4.html
+    version:  1.4

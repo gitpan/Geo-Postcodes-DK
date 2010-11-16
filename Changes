@@ -1,5 +1,9 @@
 Revision history for Perl extension Geo::Postcodes::DK
 ------------------------------------------------------
+2010-11-16 20:00 Arne Sommer
+ * Updated the postcode data.
+ * Released version 0.32.
+
 2006-09-24 14:00 Arne Sommer
  * Released version 0.31.
 
